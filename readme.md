@@ -1,7 +1,5 @@
 # Library Management System
 
-![Library Management System](images/library-management-system.png)
-
 ## Table of Contents
 
 - [Introduction](#introduction)
