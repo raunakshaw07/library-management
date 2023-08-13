@@ -52,7 +52,6 @@ const IssueBook = ({ open, handleClose, book }) => {
 
     const nextStep = async () => {
         const res = await axios.get(`${users}/get-one?param=uid&value=${value}`)
-        console.log(res)
         if (!res.data.status) {
             setMsg(res.data.error)
         } else {
@@ -72,7 +71,6 @@ const IssueBook = ({ open, handleClose, book }) => {
         if (!res.data.status) {
             setMsg(res.data.error)
         } else {
-            // console.log(res)
             const updatedMember = {
                 name: member.name,
                 address: member.address,

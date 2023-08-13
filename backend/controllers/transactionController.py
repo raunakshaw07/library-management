@@ -9,8 +9,6 @@ def transactions():
             bid = params['bid']
             tid = uid + '|' + bid
             
-            print({ uid, bid, tid })
-            
             transaction = createTransaction(tid, uid, bid)
         except Exception as err:
             return jsonify({ "status" : False, "error": str(err) }), 500
@@ -33,7 +31,6 @@ def singleTransaction(uid):
 
 def deleteTran():
     params = request.args.to_dict()
-    print(params)
     deleteTransaction(params['tid'])
     return jsonify({"status" : True, 'msg': 'Book returned successfully'}), 200
 

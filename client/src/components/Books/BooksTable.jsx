@@ -16,7 +16,7 @@ const BooksTable = ({ books }) => {
     const handleIssueOpen = () => setIssueOpen(true);
     const handleIssueClose = () => setIssueOpen(false);
 
-  if (books.length !== 0) {
+  if (books[0] !== undefined) {
     return (
         <Paper sx={{ padding: '1.5rem', margin: '2rem 0' }}>
             <Typography variant='h6' sx={{ fontWeight: 'bolder' }}>
@@ -80,7 +80,7 @@ const BooksTable = ({ books }) => {
     return (
         <Container sx={{ display: 'flex', height: '20rem', justifyContent: 'center', alignItems: 'center' }}>
             <Typography variant='h6' sx={{ fontWeight: 'bolder' }}>
-                Search books to list them here
+                No Book Found
             </Typography>
         </Container>
     )

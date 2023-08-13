@@ -7,8 +7,10 @@ def books():
     if request.method == "GET":
         try:
             Books = allBooks()
+            if len(books) == 0:
+                return jsonify({ "status": False, 'msg': 'Book Not Found' }), 404
         except Exception as err:
-            return jsonify({ "status" : False, "Error" : err }), 500
+            return jsonify({ "status" : False, "Error" : str(err) }), 500
         else:
             book_list = [{
                 "bid": book.bid, 
@@ -43,8 +45,8 @@ def singleBook():
     try:
         params = request.args.to_dict()
         book = getSingleBook(params['param'], params['value'])
-        if not book:
-            return jsonify({'status': False, 'msg': 'book not found'}), 404
+        if len(book) == 0:
+            return jsonify({'status': False, 'msg': 'book not found'}), 200
     except Exception as err:
         return jsonify({ 'status': False, 'Error': str(err) }), 500
     else:
@@ -71,7 +73,6 @@ def importBooks():
         book_list = []
         for i in range(1, int(pages) + 1):
             api_url = 'https://frappe.io/api/method/frappe-library?page=' + pages
-            print(api_url)
             response = requests.get(api_url)
             if response.status_code == 200:
                 data = response.json()['message']

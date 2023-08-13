@@ -24,7 +24,6 @@ const Search = ({ setSearch, search, comp }) => {
         if (comp === 'local') {
             if (val.trim() !== '') {
                 axios.get(`${users}/get-one?param=${param}&value=${val}`).then(res => {
-                    console.log(res);
                     setSearch([res.data.user])
                 })
             } else {

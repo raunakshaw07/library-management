@@ -26,7 +26,6 @@ def users():
         try:
             data = request.get_json()
             user = createUser(data['name'], data['address'], data['phone'], data['email'], data['gender'])
-            print(user)
             
             if user['status'] == False:
                 return jsonify({ 'status': False, 'msg': 'User already exists' })
