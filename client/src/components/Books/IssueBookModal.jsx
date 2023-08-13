@@ -100,7 +100,11 @@ const IssueBook = ({ open, handleClose, book }) => {
   return (
     <Modal
         open={open}
-        onClose={handleClose}
+        onClose={() => {
+            handleClose()
+            setMember(null)
+            setNxt(false)
+        }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
     >
@@ -142,7 +146,11 @@ const IssueBook = ({ open, handleClose, book }) => {
                 {func()}
 
                 <Box sx={{ marginTop: '3rem' }}>
-                    <Button variant='outlined' color='error' sx={{ marginRight: '1rem' }}>Reset</Button>
+                    <Button onClick={() => {
+                        handleClose();
+                        setMember(null)
+                        setNxt(false)
+                    }} variant='outlined' color='error' sx={{ marginRight: '1rem' }}>Cancel</Button>
                     {nxt ? <Button variant='contained' onClick={(onSubmit)}>Issue</Button> : <Button variant='contained' onClick={nextStep}>Continue</Button>}
                 </Box>
             </form>
