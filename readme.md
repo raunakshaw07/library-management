@@ -17,6 +17,7 @@ The Library Management System is a web application designed to manage and organi
 - User Management: Manage library members and their borrowing history.
 - Borrowing System: Record and manage book borrowings and returns.
 - Search and Filters: Easily search for books and users with advanced filters.
+- Import: Import books from api
 - Responsive Design: Accessible and user-friendly interface for desktop and mobile devices.
 
 ## Technologies Used
