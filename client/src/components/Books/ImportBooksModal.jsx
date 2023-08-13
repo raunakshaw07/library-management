@@ -20,22 +20,26 @@ const style = {
 };
 
 const ImportBooksModal = ({ open, handleClose }) => {
-    const [copies, setCopies] = useState(null);
+    const [copies, setCopies] = useState('');
     const [pages, setPages] = useState(null)
-    const [msg, setMsg] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [msg, setMsg] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const onSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
+        setMsg({msg: 'Importing'})
         if (copies.trim().length !== 0 && pages !== 0) {
             axios.get(`${books}/import?pages=${pages}&copies=${copies}`).then(res => {
                 setLoading(false);
-                if (!res.data.status) setMsg(res.status.error)
-                else setMsg(res.status.books)
+                if (!res.data.status) setMsg({msg: res.status.error})
+                else setMsg({msg: res.status.books})
             })
+        } else {
+            setMsg('Please enter valid inputs')
         }
     }
+
   return (
     <Modal
         open={open}
@@ -65,13 +69,13 @@ const ImportBooksModal = ({ open, handleClose }) => {
                 onChange = {(e) => setPages(e.target.value)}
             />
 
-            {!loading && msg.length !== 0 ? (
+            {loading && msg !== null ? (
                 <Box>
-                    {msg.map(m => {
-                        return <Typography>{m}</Typography>
-                    })}
+                    <Typography sx={{ margin: '1rem 0' }}>{msg}</Typography>
+                    {/* {msg.map(m => {
+                    })} */}
                 </Box>
-            ) : <Typography>Importing...</Typography>}
+            ) : null}
 
             <Button variant='contained' sx={{ marginRight: '1rem' }} onClick={handleClose}>Close</Button>
             <Button variant='contained' onClick={onSubmit}>Import</Button>

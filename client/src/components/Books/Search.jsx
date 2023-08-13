@@ -19,7 +19,6 @@ const Search = ({setSearch}) => {
     const onSubmit = (e) => {
         e.preventDefault();
         if (val.trim().length !== 0) {
-            console.log(val)
             axios.get(`${books}/get-one?param=${param}&value=${val}`).then(res => {
                 if (!res.data.status) setSearch([])
                 setSearch([res.data.books])
